@@ -1,176 +1,1157 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Sanjay Portfolio</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjay Kumar Choudhary | Technical Lead Portfolio</title>
+    <meta name="description" content="Professional portfolio of Sanjay Kumar Choudhary, Technical Lead and IT Specialist focused on enterprise UI engineering, full stack web applications, and AI-enabled digital solutions.">
     <style>
+        /*
+            Portfolio stylesheet
+            - Single-file HTML/CSS for GitHub Pages deployment
+            - Sensitive project and client details have been generalized
+        */
+
+        :root {
+            --bg: #081120;
+            --bg-soft: #0f1b31;
+            --surface: rgba(15, 27, 49, 0.78);
+            --surface-strong: rgba(20, 35, 62, 0.96);
+            --surface-light: #f8fbff;
+            --text: #e6eefc;
+            --text-soft: #a9b9d6;
+            --heading: #ffffff;
+            --accent: #5eead4;
+            --accent-strong: #38bdf8;
+            --accent-warm: #f59e0b;
+            --border: rgba(169, 185, 214, 0.18);
+            --shadow: 0 24px 60px rgba(2, 8, 23, 0.45);
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --radius-sm: 12px;
+            --max-width: 1180px;
+            --section-gap: 88px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 28%),
+                radial-gradient(circle at top right, rgba(94, 234, 212, 0.16), transparent 26%),
+                linear-gradient(180deg, #081120 0%, #0a1426 45%, #09101d 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            inset: auto;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: -1;
+            opacity: 0.45;
+        }
+
+        body::before {
+            top: 8%;
+            left: -80px;
+            background: rgba(56, 189, 248, 0.26);
+        }
+
+        body::after {
+            right: -100px;
+            bottom: 10%;
+            background: rgba(94, 234, 212, 0.18);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .page-shell {
+            width: min(100% - 32px, var(--max-width));
+            margin: 0 auto;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(20px);
+            background: rgba(8, 17, 32, 0.72);
+            border-bottom: 1px solid rgba(169, 185, 214, 0.08);
+        }
+
+        .topbar-inner {
+            width: min(100% - 32px, var(--max-width));
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 16px 0;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .brand-title {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--heading);
+        }
+
+        .brand-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-soft);
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .nav a {
+            color: var(--text-soft);
+            padding: 10px 14px;
+            border-radius: 999px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav a:hover,
+        .nav a:focus {
+            color: var(--heading);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .hero {
+            padding: 72px 0 40px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .hero-panel,
+        .hero-side-card,
+        .section-card,
+        .timeline-item,
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+        }
+
+        .hero-panel {
+            border-radius: var(--radius-lg);
+            padding: 44px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .hero-panel::after {
+            content: "";
+            position: absolute;
+            inset: auto -40px -70px auto;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(94, 234, 212, 0.2), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(94, 234, 212, 0.1);
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            box-shadow: 0 0 0 6px rgba(94, 234, 212, 0.1);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin: 0;
+            color: var(--heading);
+            line-height: 1.15;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.7rem);
+            margin-top: 22px;
+            max-width: 10ch;
+        }
+
+        .hero-lead {
+            margin: 22px 0 28px;
+            color: var(--text-soft);
+            font-size: 1.08rem;
+            max-width: 62ch;
+        }
+
+        .hero-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .hero-highlights span {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            color: var(--text);
+            font-size: 0.94rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 48px;
+            padding: 0 20px;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        .button:hover,
+        .button:focus {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #081120;
+            box-shadow: 0 14px 30px rgba(56, 189, 248, 0.28);
+        }
+
+        .button-secondary {
+            border: 1px solid rgba(169, 185, 214, 0.22);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--heading);
+        }
+
+        .hero-side {
+            display: grid;
+            gap: 20px;
+            animation: fadeUp 1s ease both;
+        }
+
+        .hero-side-card {
+            border-radius: var(--radius-lg);
+            padding: 26px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .stat {
+            padding: 18px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(169, 185, 214, 0.08);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-4px);
+            border-color: rgba(94, 234, 212, 0.3);
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--heading);
+        }
+
+        .stat-label {
+            color: var(--text-soft);
+            font-size: 0.92rem;
+        }
+
+        .mini-list {
+            list-style: none;
             padding: 0;
-            background: #f5f5f5;
-            color: #222;
+            margin: 18px 0 0;
+            display: grid;
+            gap: 12px;
         }
 
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
+        .mini-list li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-soft);
         }
 
-        .header {
-            background: #0f172a;
-            color: white;
-            padding: 40px;
-            text-align: center;
+        .mini-list li::before {
+            content: "◆";
+            color: var(--accent-warm);
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        main {
+            padding-bottom: 72px;
         }
 
         .section {
-            background: white;
-            padding: 20px;
+            padding-top: var(--section-gap);
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 16px;
+            margin-bottom: 26px;
+        }
+
+        .section-heading p {
+            max-width: 62ch;
+            margin: 0;
+            color: var(--text-soft);
+        }
+
+        .section-card {
+            border-radius: var(--radius-lg);
+            padding: 32px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+            gap: 24px;
+        }
+
+        .about-copy p {
+            margin: 0 0 18px;
+            color: var(--text-soft);
+        }
+
+        .focus-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .focus-item {
+            padding: 18px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(169, 185, 214, 0.08);
+        }
+
+        .focus-item h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .focus-item p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 0.95rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .skill-group {
+            padding: 22px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(169, 185, 214, 0.08);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .skill-group:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.28);
+        }
+
+        .skill-group h3 {
+            font-size: 1rem;
+            margin-bottom: 14px;
+        }
+
+        .chip-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 9px 12px;
+            border-radius: 999px;
+            background: rgba(8, 17, 32, 0.6);
+            border: 1px solid rgba(169, 185, 214, 0.12);
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 18px;
+        }
+
+        .timeline-item {
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            top: 28px;
+            left: 0;
+            bottom: 28px;
+            width: 4px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+        }
+
+        .timeline-content {
+            padding-left: 18px;
+        }
+
+        .timeline-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .role {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .meta {
+            color: var(--text-soft);
+            font-size: 0.95rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-soft);
+            margin: 0 0 16px;
+        }
+
+        .timeline-item ul {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-soft);
+        }
+
+        .timeline-item li + li {
+            margin-top: 10px;
+        }
+
+        .projects-note {
+            margin-top: 22px;
+            padding: 20px 22px;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(245, 158, 11, 0.08));
+            border: 1px solid rgba(169, 185, 214, 0.12);
+            color: var(--text-soft);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .edu-card {
+            padding: 24px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(169, 185, 214, 0.08);
+        }
+
+        .edu-card p {
+            margin: 10px 0 0;
+            color: var(--text-soft);
+        }
+
+        .detail-list {
+            display: grid;
+            gap: 14px;
             margin-top: 20px;
-            border-radius: 8px;
         }
 
-        h1, h2 {
-            margin-top: 0;
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(169, 185, 214, 0.1);
         }
 
-        ul {
-            line-height: 1.8;
+        .detail-row span:last-child {
+            color: var(--text-soft);
+            text-align: right;
         }
 
-        .project {
-            margin-bottom: 20px;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(260px, 0.8fr);
+            gap: 24px;
         }
 
-        .footer {
+        .contact-card {
+            border-radius: var(--radius-lg);
+            padding: 30px;
+        }
+
+        .contact-links {
+            display: grid;
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .contact-link {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+            padding: 16px 18px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(169, 185, 214, 0.08);
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .contact-link:hover,
+        .contact-link:focus {
+            transform: translateY(-3px);
+            border-color: rgba(94, 234, 212, 0.26);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .contact-link strong {
+            display: block;
+            color: var(--heading);
+            margin-bottom: 2px;
+        }
+
+        .contact-link span {
+            color: var(--text-soft);
+            font-size: 0.94rem;
+        }
+
+        footer {
+            padding: 26px 0 54px;
+            color: var(--text-soft);
             text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            color: #666;
+            font-size: 0.92rem;
         }
 
+        .accent-text {
+            color: var(--accent);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 960px) {
+            :root {
+                --section-gap: 72px;
+            }
+
+            .hero-grid,
+            .about-grid,
+            .contact-grid,
+            .education-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-panel,
+            .hero-side-card,
+            .section-card,
+            .timeline-item,
+            .contact-card {
+                padding: 26px;
+            }
+
+            .topbar-inner,
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .nav {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                line-height: 1.55;
+            }
+
+            .page-shell,
+            .topbar-inner {
+                width: min(100% - 22px, var(--max-width));
+            }
+
+            .hero {
+                padding-top: 46px;
+            }
+
+            .hero-panel {
+                padding: 22px;
+            }
+
+            .hero h1 {
+                max-width: none;
+            }
+
+            .hero-actions,
+            .hero-highlights,
+            .nav {
+                gap: 10px;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-row,
+            .contact-link {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .detail-row span:last-child {
+                text-align: left;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
     </style>
-
 </head>
-
 <body>
-
-    <div class="header">
-        <h1>Sanjay Choudhary</h1>
-
-        <p>
-            Technical Lead | Enterprise UI Engineer | Full Stack Developer
-        </p>
-    </div>
-
-    <div class="container">
-
-        <div class="section">
-            <h2>About Me</h2>
-
-            <p>
-                Around 15 years of experience in enterprise application development,
-                enterprise UI engineering, and full stack web application development.
-            </p>
-
-            <p>
-                Experienced in React.js, JavaScript, UI/UX development,
-                analytics dashboards, workflow automation platforms,
-                and AI-enabled enterprise applications.
-            </p>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="#home" aria-label="Homepage">
+                <span class="brand-title">Sanjay Kumar Choudhary</span>
+                <span class="brand-subtitle">Technical Lead · Enterprise UI Engineering · Full Stack Development</span>
+            </a>
+            <nav class="nav" aria-label="Primary navigation">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
+    </header>
 
-        <div class="section">
+    <main id="home" class="page-shell">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-grid">
+                <div class="hero-panel">
+                    <span class="eyebrow">Open to impactful engineering opportunities</span>
+                    <h1 id="hero-title">Building enterprise-grade digital experiences with design, scale, and clarity.</h1>
+                    <p class="hero-lead">
+                        Technical Lead and IT Specialist with 15+ years of experience delivering modern web applications,
+                        enterprise UI platforms, AI-assisted workflows, and scalable frontend architecture for large organizations.
+                    </p>
 
-            <h2>Technical Skills</h2>
+                    <div class="hero-highlights" aria-label="Core focus areas">
+                        <span>React.js & JavaScript</span>
+                        <span>Enterprise UI Engineering</span>
+                        <span>AI-Enabled Workflows</span>
+                        <span>Full Stack Web Applications</span>
+                        <span>Solution Design & Delivery</span>
+                    </div>
 
-            <ul>
-                <li>React.js</li>
-                <li>JavaScript</li>
-                <li>Node.js</li>
-                <li>Java/J2EE</li>
-                <li>AngularJS</li>
-                <li>watsonx</li>
-                <li>Watson Assistant</li>
-                <li>HTML5 / CSS3</li>
-                <li>DB2</li>
-                <li>IBM Cloud</li>
-            </ul>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#contact">Connect with me</a>
+                        <a class="button button-secondary" href="#experience">View experience</a>
+                    </div>
+                </div>
 
-        </div>
+                <div class="hero-side">
+                    <aside class="hero-side-card" aria-label="Professional snapshot">
+                        <h2>Professional snapshot</h2>
+                        <div class="stat-grid">
+                            <div class="stat">
+                                <span class="stat-value">15+</span>
+                                <span class="stat-label">Years in software engineering</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">UI + AI</span>
+                                <span class="stat-label">Modern product and solution focus</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">Cloud</span>
+                                <span class="stat-label">Enterprise deployment exposure</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">Agile</span>
+                                <span class="stat-label">Leadership and cross-team collaboration</span>
+                            </div>
+                        </div>
+                    </aside>
 
-        <div class="section">
+                    <aside class="hero-side-card" aria-label="Value proposition">
+                        <h2>What I bring</h2>
+                        <ul class="mini-list">
+                            <li>Modernization of legacy and enterprise web experiences into maintainable, user-focused platforms.</li>
+                            <li>Strong frontend leadership across dashboards, workflow systems, and reusable component ecosystems.</li>
+                            <li>Practical integration of conversational AI, NLP workflows, and data-driven enterprise interfaces.</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
 
-    <h2>Enterprise Platforms & Solutions</h2>
+        <section id="about" class="section" aria-labelledby="about-title">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">About</span>
+                    <h2 id="about-title">Enterprise engineer with a product mindset</h2>
+                </div>
+                <p>
+                    This portfolio presents a sanitized public overview of experience and capabilities.
+                    Sensitive client identifiers, internal project names, and proprietary implementation details
+                    have been generalized for public sharing.
+                </p>
+            </div>
 
-    <ul>
-        <li>
-            Enterprise analytics and dashboard platforms for reporting,
-            workflow visibility, and operational insights.
-        </li>
+            <div class="section-card about-grid">
+                <div class="about-copy">
+                    <p>
+                        I specialize in designing and delivering enterprise applications that balance usability,
+                        maintainability, and business impact. My experience spans frontend engineering, full stack
+                        development, cloud-oriented delivery, and modernization initiatives across complex platforms.
+                    </p>
+                    <p>
+                        Over the years, I have led and contributed to analytics dashboards, workflow automation systems,
+                        reporting tools, AI-assisted business applications, and enterprise portals that support
+                        operations, decision-making, and scalable delivery.
+                    </p>
+                    <p>
+                        In addition to modern JavaScript ecosystems, I bring a strong foundation in Java/J2EE enterprise
+                        development, backend integration, and cross-functional execution with product, business, and
+                        engineering stakeholders.
+                    </p>
+                </div>
 
-        <li>
-            AI-enabled applications integrating watsonx, NLP workflows,
-            and conversational AI capabilities.
-        </li>
+                <div class="focus-grid" aria-label="Focus areas">
+                    <div class="focus-item">
+                        <h3>UI Engineering</h3>
+                        <p>High-quality user interfaces, design systems, responsive layouts, and reusable components.</p>
+                    </div>
+                    <div class="focus-item">
+                        <h3>Solution Design</h3>
+                        <p>End-to-end thinking across frontend, APIs, integrations, deployment, and maintainability.</p>
+                    </div>
+                    <div class="focus-item">
+                        <h3>AI Enablement</h3>
+                        <p>Practical application of AI, NLP, and conversational interfaces for enterprise workflows.</p>
+                    </div>
+                    <div class="focus-item">
+                        <h3>Technical Leadership</h3>
+                        <p>Mentoring teams, improving delivery quality, and driving modernization with an agile mindset.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <li>
-            Workflow automation and approval management systems
-            supporting enterprise business operations.
-        </li>
+        <section id="skills" class="section" aria-labelledby="skills-title">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">Skills</span>
+                    <h2 id="skills-title">Technology stack and leadership strengths</h2>
+                </div>
+                <p>
+                    Broad enterprise experience across modern frontend ecosystems, backend services,
+                    AI integration, and delivery tooling.
+                </p>
+            </div>
 
-        <li>
-            Enterprise UI modernization initiatives using React.js,
-            JavaScript, and modern frontend technologies.
-        </li>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <h3>Current primary strengths</h3>
+                    <div class="chip-list">
+                        <span class="chip">React.js</span>
+                        <span class="chip">JavaScript</span>
+                        <span class="chip">UI/UX Development</span>
+                        <span class="chip">Enterprise UI Engineering</span>
+                        <span class="chip">Technical Solution Design</span>
+                    </div>
+                </div>
 
-        <li>
-            Sales, reporting, and proposal management applications
-            supporting enterprise users and leadership teams.
-        </li>
+                <div class="skill-group">
+                    <h3>Frontend technologies</h3>
+                    <div class="chip-list">
+                        <span class="chip">HTML5</span>
+                        <span class="chip">CSS3</span>
+                        <span class="chip">AngularJS</span>
+                        <span class="chip">Dojo</span>
+                        <span class="chip">jQuery</span>
+                        <span class="chip">Bootstrap</span>
+                        <span class="chip">Angular Material</span>
+                        <span class="chip">Carbon Design System</span>
+                    </div>
+                </div>
 
-        <li>
-            Full stack web applications deployed on cloud platforms
-            with CI/CD-based deployment workflows.
-        </li>
-    </ul>
+                <div class="skill-group">
+                    <h3>Backend and integrations</h3>
+                    <div class="chip-list">
+                        <span class="chip">Node.js</span>
+                        <span class="chip">Java / J2EE</span>
+                        <span class="chip">Struts</span>
+                        <span class="chip">JSP</span>
+                        <span class="chip">Hibernate</span>
+                        <span class="chip">REST APIs</span>
+                        <span class="chip">ESB</span>
+                    </div>
+                </div>
 
-</div>
+                <div class="skill-group">
+                    <h3>AI and GenAI exposure</h3>
+                    <div class="chip-list">
+                        <span class="chip">watsonx</span>
+                        <span class="chip">watsonx.ai</span>
+                        <span class="chip">Watson Assistant</span>
+                        <span class="chip">NLP Workflows</span>
+                        <span class="chip">Prompt Engineering</span>
+                        <span class="chip">LLM-Based Solutions</span>
+                    </div>
+                </div>
 
-        <div class="section">
+                <div class="skill-group">
+                    <h3>Cloud, delivery, and tooling</h3>
+                    <div class="chip-list">
+                        <span class="chip">IBM Cloud</span>
+                        <span class="chip">CI/CD</span>
+                        <span class="chip">UrbanCode Deploy</span>
+                        <span class="chip">Git</span>
+                        <span class="chip">Jira</span>
+                        <span class="chip">Elasticsearch</span>
+                        <span class="chip">RTC</span>
+                    </div>
+                </div>
 
-            <h2>Connect With Me</h2>
+                <div class="skill-group">
+                    <h3>Data, platforms, and additional exposure</h3>
+                    <div class="chip-list">
+                        <span class="chip">DB2</span>
+                        <span class="chip">Oracle</span>
+                        <span class="chip">MongoDB</span>
+                        <span class="chip">WebSphere</span>
+                        <span class="chip">Liberty</span>
+                        <span class="chip">Apache Tomcat</span>
+                        <span class="chip">JBoss</span>
+                        <span class="chip">Python</span>
+                        <span class="chip">MobileFirst</span>
+                        <span class="chip">Xcode</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <p>
-                LinkedIn:
-                <a href="https://linkedin.com/in/yourprofile">
-                    linkedin.com/in/yourprofile
-                </a>
-            </p>
+        <section id="experience" class="section" aria-labelledby="experience-title">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">Experience</span>
+                    <h2 id="experience-title">Selected professional journey</h2>
+                </div>
+                <p>
+                    Project descriptions below are intentionally generalized to highlight technical scope,
+                    architecture, and outcomes without exposing confidential identifiers.
+                </p>
+            </div>
 
-            <p>
-                GitHub:
-                <a href="https://github.com/yourusername">
-                    github.com/yourusername
-                </a>
-            </p>
+            <div class="timeline">
+                <article class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-top">
+                            <div>
+                                <div class="role">Development Lead / Technical Lead</div>
+                                <div class="meta">IBM India · Apr 2015 – Present · Bengaluru, India</div>
+                            </div>
+                            <div class="meta">Enterprise Platforms · UI Modernization · AI Workflows</div>
+                        </div>
+                        <p>
+                            Leading development of enterprise analytics platforms, workflow automation systems,
+                            AI-assisted business applications, and modernization initiatives for large-scale web environments.
+                        </p>
+                        <ul>
+                            <li>Delivered scalable enterprise UI solutions using React.js, JavaScript, Node.js, and modern component-driven frontend practices.</li>
+                            <li>Built reusable dashboards and workflow experiences that improved reporting visibility, usability, and consistency.</li>
+                            <li>Contributed to solution design across UI, API, and integration layers for modernization programs.</li>
+                            <li>Integrated AI-enabled workflows using conversational interfaces, NLP-driven capabilities, and enterprise-ready automation patterns.</li>
+                            <li>Improved delivery efficiency through CI/CD adoption, agile collaboration, performance tuning, and production support excellence.</li>
+                            <li>Mentored engineers and supported application stability through optimization, defect management, and technical guidance.</li>
+                        </ul>
+                    </div>
+                </article>
 
-            <p>
-                Email:
-                yourprofessionalemail@gmail.com
-            </p>
+                <article class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-top">
+                            <div>
+                                <div class="role">Senior Software Engineer</div>
+                                <div class="meta">Technology Services Firm (deputed to enterprise client) · Dec 2011 – Mar 2015</div>
+                            </div>
+                            <div class="meta">Java Enterprise Systems · UI Components · Support & Enhancements</div>
+                        </div>
+                        <p>
+                            Worked on multiple enterprise applications spanning sales enablement, proposal workflows,
+                            approval systems, and internal reporting solutions.
+                        </p>
+                        <ul>
+                            <li>Developed enterprise applications using Java/J2EE, Struts, JSP, and relational databases.</li>
+                            <li>Built reusable UI components with JavaScript-based frameworks and supported frontend enhancements.</li>
+                            <li>Implemented business logic and backend integration modules for enterprise process workflows.</li>
+                            <li>Participated in production support, enhancement delivery, testing, and defect resolution.</li>
+                            <li>Collaborated with business stakeholders during requirement analysis and implementation planning.</li>
+                        </ul>
+                    </div>
+                </article>
 
-        </div>
+                <article class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-top">
+                            <div>
+                                <div class="role">Software Engineer</div>
+                                <div class="meta">Product & Services Organization · Mar 2011 – Dec 2011</div>
+                            </div>
+                            <div class="meta">Backend Integrations · Enterprise Modules · Testing & Deployment</div>
+                        </div>
+                        <p>
+                            Contributed to enterprise application development and backend integration efforts in a
+                            collaborative engineering environment.
+                        </p>
+                        <ul>
+                            <li>Developed application modules using Java, Struts, JSP, and Hibernate.</li>
+                            <li>Implemented business components and database integrations for enterprise systems.</li>
+                            <li>Supported testing, deployment, and issue resolution across release cycles.</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
 
-    </div>
+            <div class="projects-note">
+                <strong class="accent-text">Representative work themes:</strong>
+                enterprise analytics dashboards, approval and workflow applications, AI-enabled interaction layers,
+                modernization of legacy UI platforms, proposal and reporting systems, sales-support tools,
+                and cloud-deployed business applications with CI/CD-aligned delivery.
+            </div>
+        </section>
 
-    <div class="footer">
-        © 2026 Sanjay Choudhary
-    </div>
+        <section id="education" class="section" aria-labelledby="education-title">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">Education</span>
+                    <h2 id="education-title">Academic foundation and recognition</h2>
+                </div>
+                <p>
+                    Formal education backed by long-term hands-on experience in enterprise engineering,
+                    delivery leadership, and continuous technical learning.
+                </p>
+            </div>
 
+            <div class="section-card">
+                <div class="education-grid">
+                    <div class="edu-card">
+                        <h3>Master of Computer Applications (MCA)</h3>
+                        <p>Biju Pattnaik University of Technology, Rourkela · 2008</p>
+                    </div>
+                    <div class="edu-card">
+                        <h3>Bachelor of Science – Computer Science (Honors)</h3>
+                        <p>North Orissa University · 2004</p>
+                    </div>
+                </div>
+
+                <div class="detail-list" aria-label="Additional details">
+                    <div class="detail-row">
+                        <span><strong>Certification</strong></span>
+                        <span>Microsoft Certified Professional</span>
+                    </div>
+                    <div class="detail-row">
+                        <span><strong>Recognition</strong></span>
+                        <span>Five-time Manager’s Choice Award recipient and multiple appreciation awards for delivery excellence</span>
+                    </div>
+                    <div class="detail-row">
+                        <span><strong>Languages</strong></span>
+                        <span>English, Hindi, Odia</span>
+                    </div>
+                    <div class="detail-row">
+                        <span><strong>Nationality</strong></span>
+                        <span>Indian</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section" aria-labelledby="contact-title">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">Contact</span>
+                    <h2 id="contact-title">Professional links and public profiles</h2>
+                </div>
+                <p>
+                    Public-facing channels for networking, portfolio review, and professional outreach.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Let’s connect</h3>
+                    <p class="hero-lead" style="margin: 14px 0 0; max-width: 100%;">
+                        Available for discussions around frontend leadership, enterprise modernization,
+                        full stack engineering, and AI-assisted digital experiences.
+                    </p>
+
+                    <div class="contact-links">
+                        <a class="contact-link" href="https://www.linkedin.com/in/skcsanjay" target="_blank" rel="noreferrer">
+                            <div>
+                                <strong>LinkedIn</strong>
+                                <span>Professional profile and network</span>
+                            </div>
+                            <span>linkedin.com/in/skcsanjay</span>
+                        </a>
+
+                        <a class="contact-link" href="https://github.com/sanjaykc" target="_blank" rel="noreferrer">
+                            <div>
+                                <strong>GitHub</strong>
+                                <span>Code repositories and public work</span>
+                            </div>
+                            <span>github.com/sanjaykc</span>
+                        </a>
+
+                        <a class="contact-link" href="https://sanjaykc.github.io/portfolio/" target="_blank" rel="noreferrer">
+                            <div>
+                                <strong>Portfolio</strong>
+                                <span>GitHub Pages deployment target</span>
+                            </div>
+                            <span>sanjaykc.github.io/portfolio/</span>
+                        </a>
+
+                        <a class="contact-link" href="mailto:skc.xxx@gmail.com">
+                            <div>
+                                <strong>Email</strong>
+                                <span>Professional communication</span>
+                            </div>
+                            <span>skc.xxx@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+
+                <aside class="contact-card" aria-label="Portfolio suggestions">
+                    <h3>Suggested public additions</h3>
+                    <ul class="mini-list">
+                        <li>Highlighted GitHub repositories that reflect React, Node.js, UI engineering, or dashboard work.</li>
+                        <li>Sanitized case studies for enterprise UI modernization and workflow automation outcomes.</li>
+                        <li>AI chatbot demos or prompt engineering samples that can be publicly shared.</li>
+                        <li>UI/UX concept samples and interface snapshots suitable for job applications and networking.</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 Sanjay Kumar Choudhary · Built with semantic HTML and modern CSS for fast GitHub Pages deployment.
+    </footer>
 </body>
-
 </html>
