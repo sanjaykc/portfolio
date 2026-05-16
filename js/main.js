@@ -33,6 +33,23 @@
                 }
             });
         });
+    // Header scroll effect
+    function initHeaderScrollEffect() {
+        const header = document.querySelector('.topbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+    }
     }
 
     // Active navigation highlighting
@@ -216,6 +233,7 @@
     function init() {
         initSmoothScroll();
         initActiveNav();
+        initHeaderScrollEffect();
         initScrollAnimations();
         initKeyboardNav();
         initEmailCopy();
