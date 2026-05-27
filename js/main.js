@@ -85,26 +85,63 @@
     // Intersection Observer for fade-in animations
     function initScrollAnimations() {
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
+                    // Stagger animation for multiple elements
+                    setTimeout(() => {
+                        entry.target.classList.add('animate-in');
+                    }, index * 100);
                     observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
         // Observe elements that should animate in
-        const animateElements = document.querySelectorAll('.timeline-item, .skill-group, .edu-card, .focus-item');
-        animateElements.forEach(el => {
+        const animateElements = document.querySelectorAll('.timeline-item, .skill-group, .edu-card, .focus-item, .contact-link');
+        animateElements.forEach((el, index) => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `opacity 0.7s ease ${index * 0.05}s, transform 0.7s ease ${index * 0.05}s`;
             observer.observe(el);
+        });
+    }
+
+    // Add parallax effect to hero section
+    function initParallaxEffect() {
+        const hero = document.querySelector('.hero-panel');
+        const heroSide = document.querySelector('.hero-side');
+        
+        if (!hero || !heroSide) return;
+
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * 0.3;
+            
+            if (scrolled < 600) {
+                hero.style.transform = `translateY(${rate}px)`;
+                heroSide.style.transform = `translateY(${rate * 0.5}px)`;
+            }
+        });
+    }
+
+    // Add hover effect enhancement for cards
+    function initCardInteractions() {
+        const cards = document.querySelectorAll('.skill-group, .focus-item, .edu-card, .contact-link');
+        
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                this.style.setProperty('--mouse-x', `${x}px`);
+                this.style.setProperty('--mouse-y', `${y}px`);
+            });
         });
     }
 
@@ -235,13 +272,15 @@
         initActiveNav();
         initHeaderScrollEffect();
         initScrollAnimations();
+        initParallaxEffect();
+        initCardInteractions();
         initKeyboardNav();
         initEmailCopy();
         initLazyLoading();
         respectReducedMotion();
 
         // Log initialization (remove in production)
-        console.log('Portfolio initialized successfully');
+        console.log('Portfolio initialized with enhanced interactions');
     }
 
     // Wait for DOM to be ready
