@@ -1792,3 +1792,191 @@ button:focus-visible {
 }
 
 /* Made with Bob */
+
+/* ========================================
+   Hero Quote Banner - Modern Trending Design
+   ======================================== */
+.hero-quote-banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 28px 0 36px;
+    padding: 28px 32px;
+    background: linear-gradient(
+        135deg,
+        rgba(94, 234, 212, 0.08) 0%,
+        rgba(56, 189, 248, 0.12) 50%,
+        rgba(94, 234, 212, 0.08) 100%
+    );
+    border: 1px solid rgba(94, 234, 212, 0.25);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(12px);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(94, 234, 212, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+/* Animated gradient border effect */
+.hero-quote-banner::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(94, 234, 212, 0.6) 25%,
+        rgba(56, 189, 248, 0.6) 50%,
+        rgba(94, 234, 212, 0.6) 75%,
+        transparent 100%
+    );
+    border-radius: var(--radius-lg);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.4s ease;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Subtle glow effect on top */
+.hero-quote-banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(94, 234, 212, 0.8) 50%,
+        transparent
+    );
+    filter: blur(4px);
+}
+
+.hero-quote-banner:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(94, 234, 212, 0.14) 0%,
+        rgba(56, 189, 248, 0.18) 50%,
+        rgba(94, 234, 212, 0.14) 100%
+    );
+    border-color: rgba(94, 234, 212, 0.4);
+    transform: translateY(-2px);
+    box-shadow:
+        0 12px 48px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(94, 234, 212, 0.2),
+        0 0 40px rgba(94, 234, 212, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.hero-quote-banner:hover::before {
+    opacity: 1;
+}
+
+/* Quote icon with modern styling */
+.quote-mark {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    padding: 10px;
+    background: linear-gradient(
+        135deg,
+        rgba(94, 234, 212, 0.2),
+        rgba(56, 189, 248, 0.2)
+    );
+    border: 1px solid rgba(94, 234, 212, 0.3);
+    border-radius: 12px;
+    color: var(--accent);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(94, 234, 212, 0.15);
+}
+
+.hero-quote-banner:hover .quote-mark {
+    transform: scale(1.1) rotate(-5deg);
+    background: linear-gradient(
+        135deg,
+        rgba(94, 234, 212, 0.3),
+        rgba(56, 189, 248, 0.3)
+    );
+    border-color: rgba(94, 234, 212, 0.5);
+    box-shadow: 0 8px 24px rgba(94, 234, 212, 0.3);
+}
+
+/* Quote text with enhanced typography */
+.hero-quote-text {
+    flex: 1;
+    margin: 0;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.55;
+    color: var(--heading);
+    letter-spacing: -0.015em;
+    font-style: italic;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        rgba(94, 234, 212, 1) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
+}
+
+.hero-quote-banner:hover .hero-quote-text {
+    letter-spacing: -0.01em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-quote-banner {
+        margin: 24px 0 32px;
+        padding: 24px 28px;
+        gap: 18px;
+    }
+    
+    .quote-mark {
+        width: 44px;
+        height: 44px;
+        padding: 9px;
+    }
+    
+    .hero-quote-text {
+        font-size: 17px;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-quote-banner {
+        margin: 20px 0 28px;
+        padding: 20px 24px;
+        gap: 16px;
+    }
+    
+    .quote-mark {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+        border-radius: 10px;
+    }
+    
+    .hero-quote-text {
+        font-size: 16px;
+        line-height: 1.65;
+    }
+}
