@@ -94,25 +94,25 @@ Open [`css/styles.css`](css/styles.css) and modify the color variables (line 15-
 
 ## Important Notes
 
-### Security Reminders
+### Best Practices
 - ✅ LinkedIn and GitHub links are public and safe to share
-- ⚠️ Be cautious with email addresses (spam risk)
-- ❌ Never commit API keys or credentials
-- ❌ Don't include sensitive company information
+- ✅ Use a professional email address
+- ✅ Keep content focused on achievements and impact
+- ✅ Highlight measurable results and technical expertise
 
-### What to Keep Generic
-- Internal project names
-- Client identifiers
-- Proprietary technology details
-- Confidential business information
+### Content Guidelines
+- Emphasize your technical skills and leadership experience
+- Focus on technologies, methodologies, and outcomes
+- Showcase your problem-solving abilities
+- Demonstrate your value to potential employers
 
-### What You Can Personalize
-- Your name and title
+### What to Include
+- Your name and professional title
 - Public social media links
-- General work experience
-- Public education details
-- Skills and technologies
-- Generic project descriptions
+- Detailed work experience and achievements
+- Education and certifications
+- Technical skills and expertise
+- Professional accomplishments
 
 ## Quick Checklist
 

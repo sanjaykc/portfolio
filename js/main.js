@@ -1,7 +1,6 @@
 /**
  * Portfolio JavaScript
  * Handles interactive functionality and dynamic behaviors
- * All sensitive information has been removed
  */
 
 (function() {
